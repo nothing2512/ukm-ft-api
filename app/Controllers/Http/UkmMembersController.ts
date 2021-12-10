@@ -5,11 +5,10 @@ import Uploader from "App/Helpers/Uploader";
 export default class UkmMembersController {
 
     async index({request, response}: HttpContextContract) {
-        const {type} = request.all();
-        const savings = await UkmMember.query()
-            .where('type', type)
-            .paginate(request.input('page', 1))
-        return response.pager(savings)
+        const member = await UkmMember.query()
+            .where('ukmId', request.input('ukmId'))
+            .orderBy('id')
+        return response.success(member)
     }
 
     async show({params, response}: HttpContextContract) {

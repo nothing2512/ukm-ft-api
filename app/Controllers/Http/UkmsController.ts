@@ -6,10 +6,10 @@ export default class UkmsController {
 
     async index({request, response}: HttpContextContract) {
         const {type} = request.all();
-        const savings = await Ukm.query()
+        const ukm = await Ukm.query()
             .where('type', type)
             .paginate(request.input('page', 1))
-        return response.pager(savings)
+        return response.pager(ukm)
     }
 
     async show({params, response}: HttpContextContract) {

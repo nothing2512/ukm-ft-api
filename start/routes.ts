@@ -41,7 +41,7 @@ function crud(prefix, controller?, additionalRoute?: () => void) {
 
 Route.group(() => {
     Route.post('/login', 'AuthController.login')
-    Route.post('/register', 'AuthController.register')
+    Route.post('/register', 'AuthController.register').middleware('auth')
     Route.any('/logout', 'AuthController.logout').middleware('auth')
 }).prefix('auth')
 
