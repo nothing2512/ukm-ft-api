@@ -7,7 +7,7 @@ export default class UkmMembersController {
     async index({request, response}: HttpContextContract) {
         const member = await UkmMember.query()
             .where('ukmId', request.input('ukmId'))
-            .orderBy('id')
+            .orderBy('position')
         return response.success(member)
     }
 
