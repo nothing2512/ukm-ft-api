@@ -1,7 +1,6 @@
 import {HttpContextContract} from '@ioc:Adonis/Core/HttpContext'
 import User from "App/Models/User";
 import Hash from "@ioc:Adonis/Core/Hash";
-import Uploader from "App/Helpers/Uploader";
 
 export default class AuthController {
 
@@ -22,24 +21,6 @@ export default class AuthController {
             data: null
         })
 
-        const token = await auth.login(user)
-
-        return response.success({
-            user: user,
-            token: token
-        })
-    }
-
-    async register({auth, request, response}: HttpContextContract) {
-        const payload = request.all()
-
-        let user = await User.findBy('email', payload.email)
-        if (user !== null) return response.error('Email telah terdaftar di akun lain')
-
-        const photo = request.file('photo')
-        payload.photo = await Uploader.photo(photo!)
-
-        user = await User.create(payload)
         const token = await auth.login(user)
 
         return response.success({

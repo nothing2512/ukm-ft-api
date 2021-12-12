@@ -51,6 +51,7 @@ Route.get('/attachments/:directory/:file', async ({params, response}) => {
 
 crud('ukm')
 crud('ukm/members', 'UkmMembers')
+crud('user')
 
 Route.group(() => {
     Route.get('/profile', 'UsersController.detail')
