@@ -6,10 +6,8 @@ export default class UkmsController {
 
     async index({request, response}: HttpContextContract) {
         const {type} = request.all();
-        const ukm = await Ukm.query()
-            .where('type', type)
-            .paginate(request.input('page', 1))
-        return response.pager(ukm)
+        const ukm = await Ukm.query().where('type', type)
+        return response.success(ukm)
     }
 
     async show({params, response}: HttpContextContract) {
@@ -26,7 +24,7 @@ export default class UkmsController {
 
         const {name, type, slug, description, visi, misi} = request.all()
 
-        if (name == null) return response.error('Nama penyimpanan tidak boleh kosong')
+        if (name == null) return response.error('Nama ukm tidak boleh kosong')
 
         const logo = await Uploader.logo(request.file('logo')!);
 

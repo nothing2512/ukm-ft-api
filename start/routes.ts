@@ -32,11 +32,11 @@ function crud(prefix, controller?, additionalRoute?: () => void) {
 
         Route.get('/', `${controller}Controller.index`)
         Route.get('/:id', `${controller}Controller.show`)
-        Route.post('/', `${controller}Controller.store`)
-        Route.post('/:id/edit', `${controller}Controller.update`)
-        Route.post('/:id/delete', `${controller}Controller.destroy`)
+        Route.post('/', `${controller}Controller.store`).middleware('auth')
+        Route.post('/:id/edit', `${controller}Controller.update`).middleware('auth')
+        Route.post('/:id/delete', `${controller}Controller.destroy`).middleware('auth')
 
-    }).prefix(prefix).middleware('auth')
+    }).prefix(prefix)
 }
 
 Route.group(() => {

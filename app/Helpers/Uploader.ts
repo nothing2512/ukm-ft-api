@@ -13,6 +13,7 @@ export default class Uploader {
     }
 
     static async upload(file: MultipartFileContract, directory: string) {
+        console.log(file.tmpPath)
         const filename = uuidv4() + '.' + file.extname
         await file.move(Application.tmpPath(`uploads/${directory}`), {
             name: filename,
