@@ -22,7 +22,6 @@ export default class UkmMembersController {
     }
 
     async store({request, response}: HttpContextContract) {
-
         const {name, ukmId, position} = request.all()
 
         if (name == null) return response.error('Nama penyimpanan tidak boleh kosong')
